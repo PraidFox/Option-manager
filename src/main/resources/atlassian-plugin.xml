@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<atlassian-plugin key="${atlassian.plugin.key}" name="${project.name}" plugins-version="2"> 
+  <plugin-info> 
+    <description>${project.description}</description>  
+    <version>${project.version}</version>  
+    <vendor name="${project.organization.name}" url="${project.organization.url}"/>  
+    <param name="plugin-icon">images/pluginIcon.png</param>  
+    <param name="plugin-logo">images/pluginLogo.png</param> 
+  </plugin-info>  
+  <!-- add our i18n resource -->  
+  <resource type="i18n" name="i18n" location="option-manager"/>  
+  <!-- add our web resources -->  
+  <web-resource key="option-manager-resources" name="option-manager Web Resources"> 
+    <dependency>com.atlassian.auiplugin:ajs</dependency>  
+    <resource type="download" name="option-manager.css" location="/css/option-manager.css"/>  
+    <resource type="download" name="option-manager.js" location="/js/option-manager.js"/>  
+    <resource type="download" name="images/" location="/images"/>  
+    <context>option-manager</context> 
+  </web-resource>
+
+  <web-resource key="optin-manager-menu-resources" name="optin-manager-menu-resources">
+    <transformation extension="js">
+      <transformer key="jsI18n"/>
+    </transformation>
+    <resource type="download" name="main-view.js" location="/js/main-view.js"/>
+    <context>tutorial</context>
+  </web-resource>
+
+<!--  <webwork1 key="option-manager-webwork-module">-->
+<!--    <actions>-->
+<!--      <action name="ru.alfabank.atlassian.optionmanager.webwork.OptionManagerWebworkAction" alias="OptionManagerWebworkAction">-->
+<!--        <view name="option-manager-success">/templates/option-manager-webwork-module/option-manager-success.vm</view>-->
+<!--      </action>-->
+<!--    </actions>-->
+<!--  </webwork1>-->
+
+  <webwork1 key="option-manager-webwork-module">
+    <actions>
+      <action name="ru.alfabank.atlassian.optionmanager.webwork.OptionManagerWebworkAction" alias="OptionManagerWebworkAction">
+        <view name="success">/templates/option-manager-webwork-module/option-manager-success.vm</view>
+      </action>
+    </actions>
+  </webwork1>
+
+  <web-section key="admin_options_manager_section"
+               location="admin_plugins_menu">
+    <label key="Option Manager"/>
+  </web-section>
+
+  <web-item key="admin_option_manager_webitem"
+            section="admin_plugins_menu/admin_options_manager_section">
+    <label key="Setting"/>
+    <link linkId="admin_option_manager_webitem_link">/secure/OptionManagerWebworkAction.jspa</link>
+  </web-item>
+
+  <rest name="Option Manager" key="option-manager-rest" path="/omr" version="1.0">
+    <description>All Option Manager REST Resources</description>
+  </rest>
+
+</atlassian-plugin>

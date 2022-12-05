@@ -1,0 +1,12 @@
+<html>
+    $webResourceManager.requireResource("ru.alfabank.atlassian.option-manager:optin-manager-menu-resources")
+<head>
+    <title>Title</title>
+    <meta name="decorator" content="atl.admin">
+</head>
+<body>
+<h1>OPTION MANAGER</h1>
+<div id="container"></div>
+
+</body>
+</html>
